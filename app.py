@@ -257,6 +257,13 @@ if __name__ == '__main__':
     @app.route("/send", methods = ["POST", "GET"])
 
     def send():
+        """An HTTPS API method that both sends and requests for
+        1. Vehicle Data
+        2. Setting Stage Selection
+        3. Getting stage selection
+        4. Creating a new mission
+        5. Getting the primary mission
+        6. Manual Control Override"""
         now = datetime.now()
         if (request.method == "POST"):
             requestData = request.get_json()
