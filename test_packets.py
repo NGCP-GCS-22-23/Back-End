@@ -10,6 +10,11 @@ import struct
 import time
 
 class StatesMAC(IntEnum):
+	""" Initialize the device status constants 
+
+	Args:
+		IntEnum (_type_): (Deprecated)
+	"""
 	LOITER = 0          # Loiter at the current altitude in a circle
 	TAKEOFF = 1         # Switch to manual controls and takeoff
 	LOCATE_HIKER = 2    # Radio search for the hiker
@@ -32,10 +37,15 @@ class XBeeReceiver:
 		self.device.add_data_received_callback(self.receive_packets)
 	
 	def receive_packets(self, packet):
-		'''Used to preprocess packets received from GCS and put them into a queue to await deserialization.
+		"""Used to preprocess packets received from GCS and put them into a queue to await deserialization.
 		   Since one message from GCS may exceed the maximum packet length, multiple packets may be used to
 		   send over one message. The preprocessing done by this function collects all those packets up into
-		   one byte array, where it is then saved in data_queue as one complete message.'''
+		   one byte array, where it is then saved in data_queue as one complete message.
+
+		Args:
+			packet (_type_): data packet
+		"""
+
 
 		if self.packet_counter == 0:
 			# Upon having received all packets, prepare the packet buffer to be stored in data_queue
@@ -58,8 +68,10 @@ class XBeeReceiver:
 				self.packet_buffer = []
 
 	def decode_packet(self):
-		'''Decodes the next packet in the data queue if there is one.  Is passed to a TransmitThread object,
-		   which will run it in a loop for the lifetime of that object, by the start_decode_thread() method.'''
+		"""Decodes the next packet in the data queue if there is one.  Is passed to a TransmitThread object,
+		   which will run it in a loop for the lifetime of that object, by the start_decode_thread() method.
+		"""
+
 		try:
 			data = self.data_queue.get_nowait()
 			self.decode_queue.put(ToMAC.deserialize(data))
@@ -70,7 +82,9 @@ class XBeeReceiver:
 			pass
 
 	def start_decode_thread(self):
-		'''Creates the thread which constantly checks the encode queue for data to serialize and transmit.'''
+		"""Creates the thread which constantly checks the encode queue for data to serialize and transmit.
+		"""
+		
 		self.transmit_thread = TransmitThread(self.decode_packet)
 		self.transmit_thread.start()
 
@@ -88,10 +102,12 @@ class XBeeSender:
 		self.transmit_thread = None                         # will be set to the managed transmit thread by the start_encode_thread() method
 		
 	def encode_packet(self):
-		'''Serializes and transmits the next either ToMAC, ToGCS, ToERU, or ToMEA class found on the encode queue.
+		"""Serializes and transmits the next either ToMAC, ToGCS, ToERU, or ToMEA class found on the encode queue.
 		   Sends the data to the xbee specified by the id packaged with the data on the encode queue. Is passed to a 
 		   TransmitThread object, which will run it in a loop for the lifetime of that object, by the 
-		   start_decode_thread() method.'''
+		   start_decode_thread() method.
+		"""
+
 		try:
 			data = self.encode_queue.get_nowait()
 			data[1].serialize().transmit(self.device, data[0])
@@ -102,11 +118,21 @@ class XBeeSender:
 			pass
 	
 	def start_encode_thread(self):
-		'''Creates the thread which constantly checks the encode queue for data to serialize and transmit.'''
+		"""Creates the thread which constantly checks the encode queue for data to serialize and transmit.
+		"""
+		
 		self.transmit_thread = TransmitThread(self.encode_packet)
 		self.transmit_thread.start()
 
 def get_devices(device):
+	"""Get the devices name, ID, and other info
+
+	Args:
+		device (_type_): device
+
+	Returns:
+		_type_: device
+	"""
 	print("Getting devices")
 
 	network = device.get_network()
@@ -124,6 +150,10 @@ def get_devices(device):
 	return devices
 
 def main():
+	"""Establish communication with the device and initialize the XBeeReceiver and XBeeSender classes
+       Display the current status of the device based on the defined constants
+	   
+	"""
 	# Set up communication devices
 	comm_port = "/dev/ttyUSB0"
 	baud_rate = "9600"
