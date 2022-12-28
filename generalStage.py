@@ -63,12 +63,30 @@ class updateStage():
             json.dump(stageFormat, jsonFile)
             jsonFile.close()
     
-    def updateStageName(currentStage): 
-        stageNames = ["Ready to Start", "Takeoff to Minimum Altitude", "Find the Hiker", "ERU Drop",
-                    "ERU Landing Sequence", "Drive to Hiker", "Load the Hiker", "Go to EZ", "Transferring Hiker",
-                    "Return to Home/Travel to Position"]
+    def updateStageName(vehicle_data, currentStage):
+        vehicle_name = vehicle_data['vehicle_name'] 
+        if vehicle_name == 'MAC':
+            stageNames = ["Autonomously geolocating hiker",
+                        "Dropping relief package"]
+        elif vehicle_name == 'ERU':
+            stageNames = ["Recovering relief package",
+                        "Transporting relief package",
+                        "Preparing hiker for transportation",
+                        "Transferring hiker",
+                        "Emergency stop"]
+        elif vehicle_name == 'MEA':
+            stageNames = ["Deploying fire suppressant",
+                            "Retrieving hiker",
+                            "Transporting hiker",
+                            "Lowering hiker",
+                            "Retrieving payload",
+                            "Loitering"]
 
-        return stageNames[currentStage]
+        #Validation checking for updating the stage
+        if currentStage in stageNames:
+            return currentStage
+        else:
+            return "Specified stage not valid"
 
     def updateStageName(currentStage): 
         stageNames = ["Ready to Start", "Takeoff to Minimum Altitude", "Find the Hiker", "ERU Drop",

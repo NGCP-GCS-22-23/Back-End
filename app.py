@@ -19,6 +19,7 @@ from multiprocessing.sharedctypes import Value, Array
 from ctypes import Structure, c_double, c_char_p
 from utilities import Controller
 #from process import Process
+from MQTT import paho_pub, paho_sub
 
 # Comment out for testing for frontend
 from sampleGCS import Xbee, updateDatabase
@@ -255,7 +256,6 @@ if __name__ == '__main__':
 
 
     @app.route("/send", methods = ["POST", "GET"])
-
     def send():
         now = datetime.now()
         if (request.method == "POST"):
@@ -314,6 +314,7 @@ if __name__ == '__main__':
                 newestPacketTime = now.strftime("%H:%M:%S")
                 updateDatabase.newEntries(xbee_data, newestPacketTime, vehicleName.value)
                 
+                
                 return 'Update Complete'
 
             # OLD ENDPOINT: getGeneralStage
@@ -330,7 +331,10 @@ if __name__ == '__main__':
                     "estop": dataValue['estop']
                 }
 
-                return dataFormat
+                
+
+                # return dataFormat
+                return json.dumps(dataFormat) #Better for the frontend to work with
 
             # OLD ENDPOINT: createNewMission
             elif requestData['id'] == 'Create New Mission':
@@ -442,7 +446,7 @@ if __name__ == '__main__':
             result = ERUTable.all()
         elif vehicle_name == 'MEA':
             result = MEATable.all()
-        return jsonify(result[0]['geofence']) if not is_empty(result) else jsonify([])
+        return jsonify(result[0]) if not is_empty(result) else jsonify([])
 
     @app.route('/gcs/geofence/<vehicle_id>', methods=['DELETE'])
     def remove_geofence(vehicle_id):
