@@ -21,8 +21,7 @@ from utilities import Controller
 #from process import Process
 
 # Comment out for testing for frontend
-from sampleGCS import Xbee, updateDatabase
-import xbee
+from sampleGCS import updateDatabase
 import os
 import time
 
@@ -30,24 +29,24 @@ if __name__ == '__main__':
     #============= Shared Memory ===============#
 
     controller_data = Array('i', [0] * 8)
-    controller_process = multiprocessing.Process(target=Controller.run_controller,
-                                                 args = (False, controller_data))
+    controller_process = multiprocessing.Process(target=Controller.run_controller, args = (False, controller_data))
     controller_process.start()
     
     #============== App =======================#
 
     # Comment out for testing for frontend
     manager = multiprocessing.Manager()
-    xbee_data = manager.list([0]*17)
-    xbee_send_data = manager.list([0]*10)
+    # xbee_data = manager.list([0]*17)
+    # xbee_send_data = manager.list([0]*10)
     send_flag = Value('B', 0)
     receive_flag = Value('B', 0)
     vehicleName = manager.Value(c_char_p, "ERU")
 
-    xbee_process = multiprocessing.Process(target=Xbee.xbee_run, 
-                                           args = (xbee_data, send_flag, receive_flag, vehicleName, 
-                                                   xbee_send_data, controller_data))
-    xbee_process.start()
+    # xbee_process = multiprocessing.Process(
+    #   target=Xbee.xbee_run, 
+    #   args=(xbee_data, send_flag, receive_flag, vehicleName,xbee_send_data, controller_data)
+    # )
+    # xbee_process.start()
     #print(xbee_data[:])
     app = Flask(__name__)
     cors = CORS(app, max_age=600)
@@ -255,7 +254,6 @@ if __name__ == '__main__':
 
 
     @app.route("/send", methods = ["POST", "GET"])
-
     def send():
         now = datetime.now()
         if (request.method == "POST"):
@@ -312,7 +310,7 @@ if __name__ == '__main__':
 
                 send_flag.value = 1
                 newestPacketTime = now.strftime("%H:%M:%S")
-                updateDatabase.newEntries(xbee_data, newestPacketTime, vehicleName.value)
+                updateDatabase.newEntries(newestPacketTime=newestPacketTime, vehicleName=vehicleName.value)
                 
                 return 'Update Complete'
 
@@ -379,7 +377,7 @@ if __name__ == '__main__':
 
 
     # create db.json file for storing geofence data
-    db = TinyDB('geoDB.json')
+    db = TinyDB('geoDB.json', indent=2)
 
     # create tables with specific name and initialize them
     MACTable = db.table('MAC')
@@ -521,7 +519,7 @@ if __name__ == '__main__':
     def post_search_area():
         response_object = {'status': 'success'}
         if request.method == 'POST':
-            search_area_coordinates = request.get_json(force=True)
+            search_area_coordinates = request.json
             searchAreaTable.truncate()
             searchAreaTable.insert(search_area_coordinates)
             response_object['message'] = 'data added!'

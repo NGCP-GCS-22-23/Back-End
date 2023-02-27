@@ -1,5 +1,5 @@
 #import necessary libraries
-#import pygame
+import pygame
 #from pygame.locals import *
 import os
 #import setproctitle
@@ -9,11 +9,10 @@ from ctypes import Structure, c_double
 #from process import Process
 from pygame.locals import *
 
+
 class Controller():
 
     def run_controller(mode, controller_data):
-        import pygame
-
         # Define some colors
         BLACK    = (   0,   0,   0)
         WHITE    = ( 255, 255, 255)
@@ -83,8 +82,24 @@ class Controller():
             joystick.init()
 
         #Represents one click buttons
-        button_keys = {"x": 0, "circle": 1, "square": 2, "triangle": 3, "share": 4, "PS": 5, "options": 6, "left_stick_click": 7, 
-            "right_stick_click": 8, "L1": 9, "R1": 10, "up_arrow": 11, "down_arrow": 12, "left_arrow": 13, "right_arrow": 14, "touchpad": 15}
+        button_keys = {
+            "x": 0, 
+            "circle": 1, 
+            "square": 2, 
+            "triangle": 3, 
+            "share": 4, 
+            "PS": 5, 
+            "options": 6, 
+            "left_stick_click": 7, 
+            "right_stick_click": 8, 
+            "L1": 9, 
+            "R1": 10, 
+            "up_arrow": 11, 
+            "down_arrow": 12, 
+            "left_arrow": 13, 
+            "right_arrow": 14, 
+            "touchpad": 15
+        }
         #Represents analog keys joysticks, L2, R2, L3, R3
         analog_keys = {0:0, 1:0, 2:0, 3:0, 4:-1, 5: -1 }
 

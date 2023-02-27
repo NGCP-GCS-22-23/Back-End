@@ -1,68 +1,133 @@
 {
-  "MAC": {
+  "MAC": {},
+  "ERU": {
     "1": {
       "geofence": [
         {
           "coordinates": [
             {
-              "lat": 30,
-              "lng": 25.5
+              "lat": 39,
+              "lng": -49
             },
             {
-              "lat": 50.9,
-              "lng": 10.5
+              "lat": 43,
+              "lng": 26
             },
             {
-              "lat": 20,
-              "lng": 30
-            },
-            {
-              "lat": 60,
-              "lng": 52.3
-            },
-            {
-              "lat": 71,
-              "lng": 40.12
+              "lat": 15,
+              "lng": 11
             }
           ],
-          "keep_in": true
+          "keep_in": 0
         },
         {
           "coordinates": [
             {
-              "lat": 40,
-              "lng": 35.5
+              "lat": 36,
+              "lng": -28
             },
             {
-              "lat": 61.9,
-              "lng": 12.5
+              "lat": 0,
+              "lng": -11
             },
             {
-              "lat": 30,
-              "lng": 56
+              "lat": -26,
+              "lng": 7
             }
           ],
-          "keep_in": false
+          "keep_in": 1
+        },
+        {
+          "coordinates": [
+            {
+              "lat": 11,
+              "lng": 47
+            },
+            {
+              "lat": 42,
+              "lng": 23
+            },
+            {
+              "lat": 26,
+              "lng": 40
+            }
+          ],
+          "keep_in": 0
         }
       ]
     }
   },
-  "ERU": {},
-  "MEA": {},
+  "MEA": {
+    "1": {
+      "geofence": [
+        {
+          "coordinates": [
+            {
+              "lat": -2,
+              "lng": -45
+            },
+            {
+              "lat": -17,
+              "lng": -50
+            },
+            {
+              "lat": 8,
+              "lng": 40
+            }
+          ],
+          "keep_in": 0
+        },
+        {
+          "coordinates": [
+            {
+              "lat": 36,
+              "lng": -22
+            },
+            {
+              "lat": 30,
+              "lng": 36
+            },
+            {
+              "lat": -41,
+              "lng": 27
+            }
+          ],
+          "keep_in": 1
+        },
+        {
+          "coordinates": [
+            {
+              "lat": 13,
+              "lng": 14
+            },
+            {
+              "lat": 29,
+              "lng": -25
+            },
+            {
+              "lat": -11,
+              "lng": -33
+            }
+          ],
+          "keep_in": 0
+        }
+      ]
+    }
+  },
   "search_area_coordinates": {
     "1": {
       "search_area": [
         {
-          "lng": 99.12345,
-          "lat": 88.12345
+          "lat": -1,
+          "lng": -35
         },
         {
-          "lng": 99.12345,
-          "lat": 88.12345
+          "lat": 0,
+          "lng": 8
         },
         {
-          "lng": 99.12345,
-          "lat": 88.12345
+          "lat": -33,
+          "lng": -33
         }
       ]
     }
