@@ -3,7 +3,6 @@ from vehicleDataFormat import *
 from datetime import datetime
 from vehicleDatabase import *
 from generalStage import *
-from xbee import *
 # from sampleGCS import *
 
 # updateVehicle.py handles saving new mission entry datapoints to the data format

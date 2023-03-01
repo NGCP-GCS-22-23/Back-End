@@ -1,11 +1,9 @@
 # To install necessary packages do ---> pip install -r requirements.txt
-
 flask
 flask_cors
 datetime
-# sqlite3
 pandas
-# json
-digi-xbee
+requests
+digi
 tinydb==4.6.1
 pygame

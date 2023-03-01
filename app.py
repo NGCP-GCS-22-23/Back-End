@@ -21,7 +21,7 @@ from utilities import Controller
 #from process import Process
 
 # Comment out for testing for frontend
-from sampleGCS import updateDatabase
+# from sampleGCS import updateDatabase
 import os
 import time
 
