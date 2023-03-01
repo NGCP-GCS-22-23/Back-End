@@ -21,7 +21,7 @@ from utilities import Controller
 #from process import Process
 
 # Comment out for testing for frontend
-# from sampleGCS import updateDatabase
+from sampleGCS import updateDatabase
 import os
 import time
 
@@ -253,7 +253,7 @@ if __name__ == '__main__':
 #     return modeFormat
 
 
-    @app.route("/send", methods = ["POST", "GET"])
+    @app.route("/send", methods=["POST", "GET"])
     def send():
         now = datetime.now()
         if (request.method == "POST"):
@@ -431,8 +431,12 @@ if __name__ == '__main__':
             response_object['message'] = 'data added!'
         return jsonify(response_object)
 
+
     @app.route('/getGeofence/<vehicle_name>', methods=['GET'])
     def get_geofence(vehicle_name):
+        '''
+        Getting Geofence data of specific vehicle
+        '''
         result={}
         if vehicle_name == 'MAC':
             result = MACTable.all()
@@ -442,16 +446,20 @@ if __name__ == '__main__':
             result = MEATable.all()
         return jsonify(result[0]['geofence']) if not is_empty(result) else jsonify([])
 
-    @app.route('/gcs/geofence/<vehicle_id>', methods=['DELETE'])
-    def remove_geofence(vehicle_id):
-        if(vehicle_id == 'MAC'):
-            MACTable.truncate()
-        elif(vehicle_id == 'ERU'):
-            ERUTable.truncate()
-        elif(vehicle_id == 'MEA'):
-            MEATable.truncate()
-        else: pass
-        return "DELETE SUCCESS"
+
+    # Deprecated endpoint for deleting geofence coordinates
+    # @app.route('/gcs/geofence/<vehicle_id>', methods=['DELETE'])
+    # def remove_geofence(vehicle_id):
+    #     if (vehicle_id == 'MAC'):
+    #         MACTable.truncate()
+    #     elif (vehicle_id == 'ERU'):
+    #         ERUTable.truncate()
+    #     elif (vehicle_id == 'MEA'):
+    #         MEATable.truncate()
+    #     else: 
+    #         pass
+    #     return "DELETE SUCCESS"
+
 
     @app.route('/postERUDropLocation', methods=['POST'])
     def post_drop_location():
@@ -463,6 +471,7 @@ if __name__ == '__main__':
             response_object['message'] = 'data added!'
         return jsonify(response_object)
 
+
     @app.route('/postEvacuationZone', methods=['POST'])
     def post_evacuation_zone():
         response_object = {'status': 'success'}
@@ -472,6 +481,7 @@ if __name__ == '__main__':
             evacuationCoordinatesTable.insert(evac_coordinates)
             response_object['message'] = 'data added!'
         return jsonify(response_object)
+
 
     # return drop location for MAC and evacuation zone for MEA and ERU
     @app.route('/getMissionWaypoint/<vehicle_name>', methods=['GET'])
@@ -484,6 +494,7 @@ if __name__ == '__main__':
                 result = evacuationCoordinatesTable.all()
             else: pass
         return jsonify(result[0]) if not is_empty(result) else jsonify({})
+
 
     # each vechicle has its own home location
     @app.route('/postHomeCoordinates/<vehicle_name>', methods=['POST'])

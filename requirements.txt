@@ -4,6 +4,6 @@ flask_cors
 datetime
 pandas
 requests
-digi
+digi-xbee
 tinydb==4.6.1
 pygame
