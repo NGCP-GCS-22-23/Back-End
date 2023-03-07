@@ -1,44 +1,59 @@
-# GCS BackEnd Documentation
+# Ground Communication System (GCS) - API Repository
+A repository for the application programming interface (API) of the Northrop Grumman Collaboration Project. Built using Python, Flask, and SQLite.
 
-### Objective:
+## Summary
 -
 -
 
-### Prerequisites:
+## Required Software
 - Python 3.7-3.10.6 (Python 3.11+ does not work)
-- Install pip(package installer for python)
-  - [pip documentation click here](https://pip.pypa.io/en/stable/installation/)
+- Install `pip` (Python's package installer)
+  - [pip documentation and installation guide](https://pip.pypa.io/en/stable/installation/)
 
-### How To Run
+## Getting Started
 1. Install `virtualenv`:
-```
+```bash
 $ pip install virtualenv
 ```
 
 2. Open a terminal in the project root directory and run:
-```
+```bash
 $ virtualenv env
 ```
 
 3. Run the command:
-```
-$ .\env\Scripts\activate (Powershell)
-or
-$ source env/Scripts/activate (for GitBash)
+```bash
+# For Powershell / Command Prompt
+$ .\env\Scripts\activate
+# oFor Git Bash
+$ source env/Scripts/activate
 ```
 
 4. Install the dependencies:
-```
+```bash
 $ (env) pip install -r requirements.txt
 ```
 
 5. Finally start the server:
-```
+```bash
 $ (env) python app.py
 ```
 
+6. After running the server, you should see this message on your terminal:
+```bash
+ * Serving Flask app 'app'
+ * Debug mode: off
+WARNING: This is a development server. Do not use it in a production deployment. Use 
+a production WSGI server instead.
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://10.110.245.63:5000
+Press CTRL+C to quit
+```
+
+
 ## API Endpoints:
-_TO BE UPDATE_
+The API documentation has been moved to the repository's wiki section. 
 
 
 ### _Example Geofence format (for MAC, MEA, and ERU)_
@@ -151,4 +166,27 @@ Note: Drop coordinates are for MAC
   }
 }
 Note: Evacuation coordinates are for MEA and ERU
+```
+## Load Testing
+**NOTE:** Change your directory into the `testing` folder before running any testing scripts:
+* To search for all available test functions, use this commmand:
+```bash
+python get_post.py -ls true
+```
+* To run every second GET requests only, follow this convention: 
+```bash
+python get_only.py -f [function] -v [vehicle_name]
+# Example: python get_only.py -f search_area
+```
+
+* To run every second GET & POST requests, follow this convention:
+```bash
+python get_only.py -f [function] -v [vehicle_name]
+# Example: python get_post.py -f geofence -v MAC
+```
+
+* Alternatively, you can run the `get_post.py` script with the `-f all` setting, which will run all requests sequentially (only `geofence` and `search_area` are currently available)
+```bash
+python get_only.py -f all -v [vehicle_name]
+# Example: python get_post.py -f all -v ERU
 ```
