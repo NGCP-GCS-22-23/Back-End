@@ -7,7 +7,7 @@ def mission_waypoint(**kwargs):
   try:
     # GET search area coords from database
     response = requests.get("http://{}:5000/getMissionWaypoint/{}".format(
-      # Defaults to localhost IP address if it is not given
+      # Defaults IP to localhost if not provided
       kwargs["ip_address"] if kwargs["ip_address"] else '127.0.0.1',
       kwargs['vehicle_name']
     ))
@@ -36,7 +36,7 @@ def home_coordinates(**kwargs):
 
 def search_area(**kwargs):
   # GET search area coords from database
-  # Defaults to localhost IP address if it is not given
+  # Defaults IP to localhost if not provided
   response = requests.get("http://{}:5000/getSearchArea".format(
     kwargs["ip_address"] if kwargs["ip_address"] else '127.0.0.1'
   ))

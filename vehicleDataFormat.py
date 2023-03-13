@@ -1,6 +1,6 @@
 # vehicleDataFormat.py handles the format for vehicle data and creating setter and getter methods
 
-class vehicleDataFormat():
+class vehicleDataFormat:
     
     # Used for setter and getter methods
     def __init__(self):

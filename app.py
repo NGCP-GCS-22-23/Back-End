@@ -1,4 +1,5 @@
 
+from textwrap import indent
 from flask import Flask, g, redirect, url_for, request, jsonify
 from flask_cors import CORS, cross_origin
 from updateVehicle import *
@@ -377,12 +378,15 @@ if __name__ == '__main__':
 
 
     # create db.json file for storing geofence data
-    db = TinyDB('geoDB.json', indent=2)
+    db = TinyDB('./database/coordinates.json', indent=2)
+    MACdb = TinyDB('./database/MAC.json', indent=2)
+    ERUdb = TinyDB('./database/ERU.json', indent=2)
+    MEAdb = TinyDB('./database/MEA.json', indent=2)
 
     # create tables with specific name and initialize them
-    MACTable = db.table('MAC')
-    ERUTable = db.table('ERU')
-    MEATable = db.table('MEA')
+    MACTable = MACdb.table('MAC')
+    ERUTable = ERUdb.table('ERU')
+    MEATable = MEAdb.table('MEA')
     dropCoordinatesTable = db.table('drop_coordinates')
     evacuationCoordinatesTable = db.table('evacuation_coordinates')
     searchAreaTable = db.table('search_area_coordinates')

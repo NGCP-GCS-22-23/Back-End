@@ -1,0 +1,59 @@
+{
+  "MEA": {
+    "1": {
+      "geofence": [
+        {
+          "coordinates": [
+            {
+              "lat": -50,
+              "lng": 10
+            },
+            {
+              "lat": 14,
+              "lng": 40
+            },
+            {
+              "lat": 46,
+              "lng": 35
+            }
+          ],
+          "keep_in": 0
+        },
+        {
+          "coordinates": [
+            {
+              "lat": -35,
+              "lng": 12
+            },
+            {
+              "lat": -12,
+              "lng": 23
+            },
+            {
+              "lat": 46,
+              "lng": 33
+            }
+          ],
+          "keep_in": 1
+        },
+        {
+          "coordinates": [
+            {
+              "lat": -19,
+              "lng": 3
+            },
+            {
+              "lat": 7,
+              "lng": -11
+            },
+            {
+              "lat": -24,
+              "lng": -23
+            }
+          ],
+          "keep_in": 0
+        }
+      ]
+    }
+  }
+}

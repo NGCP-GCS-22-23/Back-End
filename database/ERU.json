@@ -1,0 +1,59 @@
+{
+  "ERU": {
+    "1": {
+      "geofence": [
+        {
+          "coordinates": [
+            {
+              "lat": 13,
+              "lng": 20
+            },
+            {
+              "lat": 39,
+              "lng": -22
+            },
+            {
+              "lat": 4,
+              "lng": 20
+            }
+          ],
+          "keep_in": 0
+        },
+        {
+          "coordinates": [
+            {
+              "lat": 10,
+              "lng": -4
+            },
+            {
+              "lat": 43,
+              "lng": 17
+            },
+            {
+              "lat": -21,
+              "lng": 42
+            }
+          ],
+          "keep_in": 0
+        },
+        {
+          "coordinates": [
+            {
+              "lat": -35,
+              "lng": -44
+            },
+            {
+              "lat": -12,
+              "lng": -16
+            },
+            {
+              "lat": -36,
+              "lng": 21
+            }
+          ],
+          "keep_in": 1
+        }
+      ]
+    }
+  }
+}
