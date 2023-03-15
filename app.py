@@ -253,16 +253,18 @@ if __name__ == '__main__':
 #         jsonFile.close()
 #     return modeFormat
 
-    @app.route("/vehicleData", methods=['GET','POST'])
-    def get_vehicle_data():
-        if request.method not in ['GET','POST']:
-            return jsonify({
-              "statusCode": 405,
-              "message": f"{request.method} method not allowed. Please use GET method for this endpoint only."
-            })
+
+    # ! COMMENTED OUT CHANGES TO ENDPOINTS
+    # @app.route("/vehicleData", methods=['GET','POST'])
+    # def get_vehicle_data():
+    #     if request.method not in ['GET','POST']:
+    #         return jsonify({
+    #           "statusCode": 405,
+    #           "message": f"{request.method} method not allowed. Please use GET method for this endpoint only."
+    #         })
         
-        if request.method == 'GET':
-            vehicle = request.args.get('vehicle')
+    #     if request.method == 'GET':
+    #         vehicle = request.args.get('vehicle')
         
         
         
