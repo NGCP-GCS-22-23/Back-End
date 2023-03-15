@@ -5,16 +5,16 @@
         {
           "coordinates": [
             {
-              "lat": 13,
-              "lng": 20
+              "lat": 24,
+              "lng": 22
             },
             {
-              "lat": 39,
-              "lng": -22
+              "lat": -5,
+              "lng": -37
             },
             {
-              "lat": 4,
-              "lng": 20
+              "lat": -44,
+              "lng": -10
             }
           ],
           "keep_in": 0
@@ -22,36 +22,36 @@
         {
           "coordinates": [
             {
-              "lat": 10,
-              "lng": -4
+              "lat": 45,
+              "lng": 11
             },
             {
-              "lat": 43,
-              "lng": 17
+              "lat": -42,
+              "lng": -41
             },
             {
-              "lat": -21,
-              "lng": 42
-            }
-          ],
-          "keep_in": 0
-        },
-        {
-          "coordinates": [
-            {
-              "lat": -35,
-              "lng": -44
-            },
-            {
-              "lat": -12,
-              "lng": -16
-            },
-            {
-              "lat": -36,
-              "lng": 21
+              "lat": -38,
+              "lng": 32
             }
           ],
           "keep_in": 1
+        },
+        {
+          "coordinates": [
+            {
+              "lat": 32,
+              "lng": -20
+            },
+            {
+              "lat": 23,
+              "lng": -43
+            },
+            {
+              "lat": 45,
+              "lng": 40
+            }
+          ],
+          "keep_in": 0
         }
       ]
     }

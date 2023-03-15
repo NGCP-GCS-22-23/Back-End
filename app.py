@@ -22,7 +22,7 @@ from utilities import Controller
 #from process import Process
 
 # Comment out for testing for frontend
-from sampleGCS import updateDatabase
+# from sampleGCS import updateDatabase
 import os
 import time
 
@@ -253,6 +253,20 @@ if __name__ == '__main__':
 #         jsonFile.close()
 #     return modeFormat
 
+    @app.route("/vehicleData", methods=['GET','POST'])
+    def get_vehicle_data():
+        if request.method not in ['GET','POST']:
+            return jsonify({
+              "statusCode": 405,
+              "message": f"{request.method} method not allowed. Please use GET method for this endpoint only."
+            })
+        
+        if request.method == 'GET':
+            vehicle = request.args.get('vehicle')
+        
+        
+        
+
 
     @app.route("/send", methods=["POST", "GET"])
     def send():
@@ -311,7 +325,7 @@ if __name__ == '__main__':
 
                 send_flag.value = 1
                 newestPacketTime = now.strftime("%H:%M:%S")
-                updateDatabase.newEntries(newestPacketTime=newestPacketTime, vehicleName=vehicleName.value)
+                # updateDatabase.newEntries(newestPacketTime=newestPacketTime, vehicleName=vehicleName.value)
                 
                 return 'Update Complete'
 
